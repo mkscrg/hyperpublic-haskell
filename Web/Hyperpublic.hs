@@ -13,7 +13,6 @@ import Data.ByteString ( ByteString
                        , append )
 import Data.ByteString.Char8 ( unpack )
 import qualified Data.ByteString.Lazy as Lazy
-
 import Network.HTTP.Enumerator ( Request (..)
                                , Response (..)
                                , def
@@ -22,11 +21,6 @@ import Network.HTTP.Enumerator ( Request (..)
 import Network.HTTP.Types ( SimpleQuery
                           , simpleQueryToQuery )
 
-
-data HpAuth = HpAuth
-    { clientId :: ByteString
-    , clientSecret :: ByteString
-    } deriving (Show)
 
 callHpApi :: HpAuth -> ByteString -> SimpleQuery -> IO Value
 callHpApi auth path query = do
@@ -37,6 +31,12 @@ callHpApi auth path query = do
     eitherToIO $ Right rsp >>= readResponse >>= eitherResult . parse json
   where
     cleanQuery (k, _) = k /= "client_id" && k /= "client_secret"
+
+data HpAuth = HpAuth
+    { clientId :: ByteString
+    , clientSecret :: ByteString
+    } deriving (Show)
+
 
 hpRequest :: ByteString -> SimpleQuery -> Request m
 hpRequest path query = def
