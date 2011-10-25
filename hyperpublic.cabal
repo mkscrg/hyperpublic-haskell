@@ -1,0 +1,15 @@
+name: hyperpublic
+version: 0.0.0
+synopsis: Wrapper for the Hyperpublic API
+cabal-version: >= 1.2
+license: PublicDomain
+author: Mike S. Craig
+maintainer: mkscrg@gmail.com
+extra-source-files: README.md
+build-type: Simple
+
+library
+  build-depends:
+    aeson, attoparsec, base, bytestring, http-enumerator, http-types
+  exposed-modules: Web.Hyperpublic
+  extensions: OverloadedStrings
