@@ -11,5 +11,6 @@ build-type: Simple
 library
   build-depends:
     aeson, attoparsec, base, bytestring, http-enumerator, http-types
-  exposed-modules: Web.Hyperpublic
+  exposed-modules:
+    Web.Hyperpublic, Web.Hyperpublic.Places, Web.Hyperpublic.Offers
   extensions: OverloadedStrings

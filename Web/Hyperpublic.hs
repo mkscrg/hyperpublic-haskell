@@ -1,8 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Web.Hyperpublic
-( HpAuth
-, callHpApi
+( HpAuth (..)
+, SimpleQuery
+, Value
+, callApi
 ) where
 
 import Data.Aeson ( Value
@@ -13,6 +15,7 @@ import Data.ByteString ( ByteString
                        , append )
 import Data.ByteString.Char8 ( unpack )
 import qualified Data.ByteString.Lazy as Lazy
+
 import Network.HTTP.Enumerator ( Request (..)
                                , Response (..)
                                , def
@@ -22,12 +25,12 @@ import Network.HTTP.Types ( SimpleQuery
                           , simpleQueryToQuery )
 
 
-callHpApi :: HpAuth -> ByteString -> SimpleQuery -> IO Value
-callHpApi auth path query = do
+callApi :: HpAuth -> ByteString -> SimpleQuery -> IO Value
+callApi auth path query = do
     let query' = [ ("client_id", clientId auth)
                  , ("client_secret", clientSecret auth) ] ++
                  filter cleanQuery query
-    rsp <- withManager (httpLbsRedirect $ hpRequest path query')
+    rsp <- withManager (httpLbsRedirect $ request path query')
     eitherToIO $ Right rsp >>= readResponse >>= eitherResult . parse json
   where
     cleanQuery (k, _) = k /= "client_id" && k /= "client_secret"
@@ -38,8 +41,8 @@ data HpAuth = HpAuth
     } deriving (Show)
 
 
-hpRequest :: ByteString -> SimpleQuery -> Request m
-hpRequest path query = def
+request :: ByteString -> SimpleQuery -> Request m
+request path query = def
     { host = "api.hyperpublic.com"
     , path = "/api/v1" `append` path
     , queryString = simpleQueryToQuery query
