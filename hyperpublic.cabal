@@ -1,11 +1,14 @@
 name: hyperpublic
 version: 0.0.0
-synopsis: Wrapper for the Hyperpublic API
+synopsis: A thin wrapper for the Hyperpublic API
+description:
+  A thin wrapper for the Hyperpublic API, which uses "Network.HTTP.Enumerator"
+  to fetch results and "Data.Aeson" to return them as JSON.
 cabal-version: >= 1.2
 license: PublicDomain
 author: Mike S. Craig
 maintainer: mkscrg@gmail.com
-extra-source-files: README.md
+extra-source-files: README.md, Examples.hs
 build-type: Simple
 
 library
@@ -14,3 +17,4 @@ library
   exposed-modules:
     Web.Hyperpublic, Web.Hyperpublic.Places, Web.Hyperpublic.Offers
   extensions: OverloadedStrings
+  ghc-options: -Wall

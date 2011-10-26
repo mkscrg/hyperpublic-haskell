@@ -1,1 +1,2 @@
-A wrapper for the [Hyperpublic](http://hyperpublic.com/) API
+A thin Haskell wrapper for the [Hyperpublic](http://hyperpublic.com/) API. See
+the documentation on the Hackage page.

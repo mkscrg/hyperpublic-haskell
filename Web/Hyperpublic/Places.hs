@@ -1,16 +1,29 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | See the usage examples in the "Web.Hyperpublic" documentation.
 module Web.Hyperpublic.Places
 where
 
+import Data.Aeson ( Value )
 import Data.ByteString ( ByteString
                        , append )
 import Data.ByteString.Char8 ()
 
+import Network.HTTP.Types ( SimpleQuery )
+
 import Web.Hyperpublic
 
-show :: HpAuth -> ByteString -> IO Value
-show auth id = callApi auth ("/places/" `append` id) []
 
-find :: HpAuth -> SimpleQuery -> IO Value
+-- | Call the show method of the Places+ endpoint. API documentation at
+-- <http://developer.hyperpublic.com/places/show-a-place/>
+show :: HpAuth      -- ^ API authorization
+     -> ByteString  -- ^ The id of the place to be returned
+     -> IO Value    -- ^ JSON output
+show auth hpId = callApi auth ("/places/" `append` hpId) []
+
+-- | Call the find method of the Places+ endpoint. API documentation at
+-- <http://developer.hyperpublic.com/offers/find-offers/>
+find :: HpAuth       -- ^ API authorization
+     -> SimpleQuery  -- ^ Query parameters
+     -> IO Value     -- ^ JSON output
 find auth query = callApi auth "/places" query
