@@ -2,7 +2,11 @@
 
 -- | Wrappers for calling the methods of the Hyperpublic Places+ endpoint.
 module Web.Hyperpublic.Places
-where
+( show
+, find
+) where
+
+import Prelude hiding ( show )
 
 import Data.Aeson ( Value )
 import Data.ByteString ( ByteString
@@ -12,6 +16,7 @@ import Data.ByteString.Char8 ()
 import Network.HTTP.Types ( SimpleQuery )
 
 import Web.Hyperpublic
+import Web.Hyperpublic.Internal
 
 
 -- | Call the show method of the Places+ endpoint. API documentation at

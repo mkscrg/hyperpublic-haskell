@@ -35,6 +35,8 @@ library
     Web.Hyperpublic.Places,
     Web.Hyperpublic.Offers,
     Web.Hyperpublic.Categories
+  other-modules:
+    Web.Hyperpublic.Internal
   extensions: OverloadedStrings
   ghc-options: -Wall
 

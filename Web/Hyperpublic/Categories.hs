@@ -2,7 +2,11 @@
 
 -- | Wrappers for calling the methods of the Hyperpublic Categories endpoint.
 module Web.Hyperpublic.Categories
-where
+( show
+, find
+) where
+
+import Prelude hiding ( show )
 
 import Data.Aeson ( Value )
 import Data.ByteString ( ByteString
@@ -10,6 +14,7 @@ import Data.ByteString ( ByteString
 import Data.ByteString.Char8 ()
 
 import Web.Hyperpublic
+import Web.Hyperpublic.Internal
 
 
 -- | Call the show method of the Categories endpoint. API documentation at
