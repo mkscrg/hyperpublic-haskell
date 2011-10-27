@@ -1,20 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_HADDOCK prune #-}
 
--- | A thin wrapper for the Hyperpublic API, which uses
--- "Network.HTTP.Enumerator" to fetch results and "Data.Aeson" to return them
--- as JSON. The "Web.Hyperpublic.Places" and "Web.Hyperpublic.Offers" modules
--- wrap @find@ and @show@ methods of the Places+
--- (<http://www.hyperpublic.com/placesplus>) and Geo Deals and Events
--- (<http://www.hyperpublic.com/deals>) endpoints, respectively. The next
--- release of this package will also wrap the @create@ method of Places+. Full
--- API documentation can be found at <http://developer.hyperpublic.com/>.
+-- | A thin wrapper for the Hyperpublic API, which uses @http-enumerator@ to
+-- fetch results and @aeson@ to return them as JSON.
 --
--- "Web.Hyperpublic.Places" and "Web.Hyperpublic.Offers" export the functions
--- @find@ and @show@, where each works similarly across the two modules. The
--- next release of this package will also wrap the @create@ method of Places+.
+-- Full API documentation can be found at <http://developer.hyperpublic.com/>.
 --
--- Examples (included in the distribution as @Examples.hs@):
+-- Some basic usage examples follow. This code is included in the distribution as @Examples.hs@, buildable as the @hyperpublic-example@ executable by turning on the @example@ flag. Usage questions may be posted on the Hyperpublic API Developers mailing list at <http://groups.google.com/group/hyperpublic-api-developers>.
 --
 -- >{-# LANGUAGE OverloadedStrings #-}
 -- >

@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | See the usage examples in the "Web.Hyperpublic" documentation.
+-- | Wrappers for calling the methods of the Hyperpublic Geo Deals and Events
+-- endpoint.
 module Web.Hyperpublic.Offers
 where
 
@@ -17,7 +18,7 @@ import Web.Hyperpublic
 -- | Call the show method of the Geo Deals and Events endpoint. API
 -- documentation at <http://developer.hyperpublic.com/offers/show-an-offer/>
 show :: HpAuth      -- ^ API authorization
-     -> ByteString  -- ^ The id of the place to be returned
+     -> ByteString  -- ^ The id of the offer to be returned
      -> IO Value    -- ^ JSON output
 show auth hpId = callApi auth ("/offers/" `append` hpId) []
 

@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | See the usage examples in the "Web.Hyperpublic" documentation.
+-- | Wrappers for calling the methods of the Hyperpublic Places+ endpoint.
 module Web.Hyperpublic.Places
 where
 
