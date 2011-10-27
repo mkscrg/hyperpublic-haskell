@@ -4,6 +4,7 @@
 module Web.Hyperpublic.Places
 ( show
 , find
+, create
 ) where
 
 import Prelude hiding ( show )
@@ -33,3 +34,10 @@ find :: HpAuth       -- ^ API authorization
      -> SimpleQuery  -- ^ Query parameters
      -> IO Value     -- ^ JSON output
 find auth query = callApi auth GET "/places" query
+
+-- | Call the create method of the Places+ endpoint. API documentation at
+-- <http://developer.hyperpublic.com/places/create-a-place/>
+create :: HpAuth       -- ^ API authorization
+       -> SimpleQuery  -- ^ Query parameters
+       -> IO Value     -- ^ JSON output
+create auth query = callApi auth POST "/places" query

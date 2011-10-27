@@ -28,7 +28,8 @@ show auth hpId = callApi auth GET ("/categories/" `append` hpId) []
 
 -- | Call the find method of the Categories endpoint, which simply lists the
 -- full category hierarchy. (The endpoint does not currently support more
--- specific queries.)
+-- specific queries.) API documentation at
+-- <http://developer.hyperpublic.com/categories/all-categories/>
 find :: HpAuth       -- ^ API authorization
      -> IO Value     -- ^ JSON output
 find auth = callApi auth GET "/categories" []

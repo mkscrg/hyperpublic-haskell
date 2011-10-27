@@ -13,9 +13,11 @@ import Web.Hyperpublic
 import qualified Web.Hyperpublic.Places as Places
 import qualified Web.Hyperpublic.Offers as Offers
 
+
 -- Sequence the two examples.
 main :: IO ()
 main = placeNamesNearHq >> offerDescr
+
 
 -- Find places near Hyperpublic HQ and print the name of each.
 placeNamesNearHq :: IO ()
@@ -34,6 +36,7 @@ offerDescr =
     in json >>= putStrLn . show . getDescr
   where
     getDescr (Object obj) = maybe "" id $ getTextField obj "description"
+
 
 -- Create an authorization record. Get your own credentials at
 -- http://www.hyperpublic.com/registerapi

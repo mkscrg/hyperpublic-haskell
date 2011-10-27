@@ -1,9 +1,17 @@
 -- | A thin wrapper for the Hyperpublic API, which uses @http-enumerator@ to
--- fetch results and @aeson@ to return them as JSON.
+-- fetch results and @aeson@ to return them as JSON. Full documentation for the
+-- Hyperpublic API can be found at <http://developer.hyperpublic.com/>.
 --
--- Full API documentation can be found at <http://developer.hyperpublic.com/>.
+-- The exposed functions of these modules follow a simple pattern: each takes
+-- an 'HpAuth' record as well as either a 'ByteString' (for @show@ methods on
+-- the API) or a 'Network.HTTP.Types.SimpleQuery' (for @find@ or @create@
+-- methods on the API).
 --
--- Some basic usage examples follow. This code is included in the distribution as @Examples.hs@, buildable as the @hyperpublic-example@ executable by turning on the @example@ flag. Usage questions may be posted on the Hyperpublic API Developers mailing list at <http://groups.google.com/group/hyperpublic-api-developers>.
+-- Some basic usage examples follow. (This code is included in the distribution
+-- as @Examples.hs@. Call @cabal-install@ with @-f example@ and it will build
+-- an executable called @hyperpublic-example@.) Usage questions may be posted
+-- on the Hyperpublic API Developers mailing list at
+-- <http://groups.google.com/group/hyperpublic-api-developers>.
 --
 -- >{-# LANGUAGE OverloadedStrings #-}
 -- >
@@ -20,9 +28,11 @@
 -- >import qualified Web.Hyperpublic.Places as Places
 -- >import qualified Web.Hyperpublic.Offers as Offers
 -- >
+-- >
 -- >-- Sequence the two examples.
 -- >main :: IO ()
 -- >main = placeNamesNearHq >> offerDescr
+-- >
 -- >
 -- >-- Find places near Hyperpublic HQ and print the name of each.
 -- >placeNamesNearHq :: IO ()
@@ -41,6 +51,7 @@
 -- >    in json >>= putStrLn . show . getDescr
 -- >  where
 -- >    getDescr (Object obj) = maybe "" id $ getTextField obj "description"
+-- >
 -- >
 -- >-- Create an authorization record. Get your own credentials at
 -- >-- http://www.hyperpublic.com/registerapi
