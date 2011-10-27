@@ -110,7 +110,7 @@ readResponse rsp =
     let strictBody = foldr1 append $ Lazy.toChunks $ responseBody rsp
     in if statusCode rsp == 200
       then Right strictBody
-      else Left $ unpack strictBody
+      else Left $ show (statusCode rsp) ++ ": " ++ unpack strictBody
 
 eitherToIO :: Either String a -> IO a
 eitherToIO (Right a) = return a
