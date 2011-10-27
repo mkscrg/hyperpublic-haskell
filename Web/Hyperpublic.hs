@@ -7,10 +7,9 @@
 -- the API) or a 'Network.HTTP.Types.SimpleQuery' (for @find@ or @create@
 -- methods on the API).
 --
--- Some basic usage examples follow. (This code is included in the distribution
--- as @Examples.hs@. Call @cabal-install@ with @-f example@ and it will build
--- an executable called @hyperpublic-example@.) Usage questions may be posted
--- on the Hyperpublic API Developers mailing list at
+-- Some examples follow. (This code is included in the distribution as
+-- @Examples.hs@.) Usage questions may be posted on the Hyperpublic API
+-- Developers mailing list at
 -- <http://groups.google.com/group/hyperpublic-api-developers>.
 --
 -- >{-# LANGUAGE OverloadedStrings #-}

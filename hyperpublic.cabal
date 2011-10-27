@@ -15,11 +15,6 @@ description:
 category: Web
 extra-source-files: README.md, Examples.hs
 
-flag example
-  description: Build Examples.hs into the hyperpublic-example executable.
-  default: False
-  manual: True
-
 library
   -- Very conservative lower bounds here. Notify me when you find wider
   -- compatibility boundaries and I'll update them here.
@@ -39,22 +34,6 @@ library
     Web.Hyperpublic.Internal
   extensions: OverloadedStrings
   ghc-options: -Wall
-
-executable hyperpublic-example
-  build-depends:
-    aeson >= 0.3.2.12 && < 0.4,
-    base >= 4.0 && < 5.0,
-    bytestring >= 0.9.2.0 && < 0.9.99,
-    containers >= 0.4.1.0 && < 0.5,
-    text >= 0.11.1.6 && < 0.12,
-    vector >= 0.9 && < 0.9.99
-  other-modules:
-    Web.Hyperpublic, Web.Hyperpublic.Places, Web.Hyperpublic.Offers
-  main-is: Examples.hs
-  if flag(example)
-    buildable: True
-  else
-    buildable: False
 
 source-repository head
   type: git
