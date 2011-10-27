@@ -19,24 +19,27 @@ import Network.HTTP.Enumerator ( Request (..)
                                , httpLbsRedirect
                                , withManager )
 import Network.HTTP.Types ( SimpleQuery
+                          , StdMethod (..)
+                          , renderStdMethod
                           , simpleQueryToQuery )
 
 import Web.Hyperpublic
 
 
-callApi :: HpAuth -> ByteString -> SimpleQuery -> IO Value
-callApi auth urlPath query = do
+callApi :: HpAuth -> StdMethod -> ByteString -> SimpleQuery -> IO Value
+callApi auth mthd urlPath query = do
     let query' = [ ("client_id", clientId auth)
                  , ("client_secret", clientSecret auth) ] ++
                  filter cleanQuery query
-    rsp <- withManager (httpLbsRedirect $ request urlPath query')
+    rsp <- withManager (httpLbsRedirect $ request mthd urlPath query')
     eitherToIO $ Right rsp >>= readResponse >>= eitherResult . parse json
   where
     cleanQuery (k, _) = k /= "client_id" && k /= "client_secret"
 
-request :: ByteString -> SimpleQuery -> Request m
-request urlPath query = def
-    { host = "api.hyperpublic.com"
+request :: StdMethod -> ByteString -> SimpleQuery -> Request m
+request mthd urlPath query = def
+    { method = renderStdMethod mthd
+    , host = "api.hyperpublic.com"
     , path = "/api/v1" `append` urlPath
     , queryString = simpleQueryToQuery query
     , port = 443

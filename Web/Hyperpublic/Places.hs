@@ -13,7 +13,8 @@ import Data.ByteString ( ByteString
                        , append )
 import Data.ByteString.Char8 ()
 
-import Network.HTTP.Types ( SimpleQuery )
+import Network.HTTP.Types ( SimpleQuery
+                          , StdMethod (..) )
 
 import Web.Hyperpublic
 import Web.Hyperpublic.Internal
@@ -24,11 +25,11 @@ import Web.Hyperpublic.Internal
 show :: HpAuth      -- ^ API authorization
      -> ByteString  -- ^ The id of the place to be returned
      -> IO Value    -- ^ JSON output
-show auth hpId = callApi auth ("/places/" `append` hpId) []
+show auth hpId = callApi auth GET ("/places/" `append` hpId) []
 
 -- | Call the find method of the Places+ endpoint. API documentation at
 -- <http://developer.hyperpublic.com/offers/find-offers/>
 find :: HpAuth       -- ^ API authorization
      -> SimpleQuery  -- ^ Query parameters
      -> IO Value     -- ^ JSON output
-find auth query = callApi auth "/places" query
+find auth query = callApi auth GET "/places" query

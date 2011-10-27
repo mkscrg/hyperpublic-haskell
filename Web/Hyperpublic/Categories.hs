@@ -13,6 +13,8 @@ import Data.ByteString ( ByteString
                        , append )
 import Data.ByteString.Char8 ()
 
+import Network.HTTP.Types ( StdMethod (..) )
+
 import Web.Hyperpublic
 import Web.Hyperpublic.Internal
 
@@ -22,11 +24,11 @@ import Web.Hyperpublic.Internal
 show :: HpAuth      -- ^ API authorization
      -> ByteString  -- ^ The id of the category to be returned
      -> IO Value    -- ^ JSON output
-show auth hpId = callApi auth ("/categories/" `append` hpId) []
+show auth hpId = callApi auth GET ("/categories/" `append` hpId) []
 
 -- | Call the find method of the Categories endpoint, which simply lists the
 -- full category hierarchy. (The endpoint does not currently support more
 -- specific queries.)
 find :: HpAuth       -- ^ API authorization
      -> IO Value     -- ^ JSON output
-find auth = callApi auth "/categories" []
+find auth = callApi auth GET "/categories" []
