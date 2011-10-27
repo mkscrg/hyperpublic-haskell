@@ -1,5 +1,5 @@
 name: hyperpublic
-version: 0.0.0
+version: 0.1.0
 cabal-version: >= 1.6
 build-type: Simple
 license: PublicDomain
